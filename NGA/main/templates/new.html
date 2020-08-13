@@ -33,7 +33,21 @@
     <!--품목 수량(컨트롤박스)-->
     <div>
         <h3><label for="inputRequestQuantity">요청 품목 수량 :</label></h3>
-        <input type="text" id="inputRequestQuantity" name="requestquantity" required>
+        <!-- <input type="text" id="inputRequestQuantity" name="requestquantity" required> -->
+
+        <form name="joinForm">
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="inputRequestQuantity" name="count" />
+                    </td>
+                    <td>
+                        <button onClick="add();">위로</button>
+                        <button onClick="minus();">아래로</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
     <!--품목 이름-->
     <div>
@@ -57,16 +71,31 @@
     <!--제한 시간-->
     <div>
         <h3><label for="inputLimitedTime">제한시간 :</label></h3>
-        <input type="text" id="inputLimitedTime" name="limitedtimehour" required>시
+        <p><input type="time" value="00:00:00" min="00:00:00" max="23:59:59"></p>
+        <!--<input type="text" id="inputLimitedTime" name="limitedtimehour" required>시
         <input type="text" id="inputLimitedTime" name="limitedtimemin" required>분
-        <input type="text" id="inputLimitedTime" name="limitedtimesec" required>초
+        <input type="text" id="inputLimitedTime" name="limitedtimesec" required>초 -->
+        <!-- 여기서 시,분,초의 id 값을 다 다르게 해서 다른 id로 줘야하는 지 아니면 한 번에 묶어서 보내야 하는 지
+        모르겠어요.. 아마 다 다른 id 값을 줘야겠죠?! -->
     </div>
     <!--부탁하기(버튼)-->
     <input type="button" name="requestadd" value="부탁하기">
 </form>
 
 
+<script type="text/javascript">
+    var a = 0;
 
+    function add() {
+        var number = document.getElementById("inputRequestQuantity")
+        number.value = a++;
+    }
+
+    function minus() {
+        var number = document.getElementById("inputRequestQuantity")
+        number.value = a--;
+    }
+</script>
 
 
 
