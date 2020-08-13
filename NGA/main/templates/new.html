@@ -35,7 +35,7 @@
         <h3><label for="inputRequestQuantity">요청 품목 수량 :</label></h3>
         <!-- <input type="text" id="inputRequestQuantity" name="requestquantity" required> -->
 
-        <form name="joinForm">
+        <!-- <form name="joinForm">
             <table>
                 <tr>
                     <td>
@@ -47,6 +47,12 @@
                     </td>
                 </tr>
             </table>
+        </form> -->
+
+        <form>
+            <input type=text name=amount value=0>
+            <input type=button value="증가" onClick="javascript:this.form.amount.value++;">
+            <input type=button value="감소" onClick="javascript:this.form.amount.value--;">
         </form>
     </div>
     <!--품목 이름-->
@@ -71,6 +77,7 @@
     <!--제한 시간-->
     <div>
         <h3><label for="inputLimitedTime">제한시간 :</label></h3>
+        <!-- 시간 들어가는 부분 -->
         <p><input type="time" value="00:00:00" min="00:00:00" max="23:59:59"></p>
         <!--<input type="text" id="inputLimitedTime" name="limitedtimehour" required>시
         <input type="text" id="inputLimitedTime" name="limitedtimemin" required>분
@@ -79,11 +86,12 @@
         모르겠어요.. 아마 다 다른 id 값을 줘야겠죠?! -->
     </div>
     <!--부탁하기(버튼)-->
-    <input type="button" name="requestadd" value="부탁하기">
+    <!-- form 태그와 submit 태그는 연결 -->
+    <button type="submit" name="requestadd" value="부탁하기">
 </form>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var a = 0;
 
     function add() {
@@ -95,7 +103,8 @@
         var number = document.getElementById("inputRequestQuantity")
         number.value = a--;
     }
-</script>
+</script> -->
+
 
 
 
