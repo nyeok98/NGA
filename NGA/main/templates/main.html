@@ -4,4 +4,17 @@
 
 <h5>This is main.html</h5>
 
+{% for blog in blogs %}
+
+{{blog.request_place}}
+{{blog.meet_place}}
+{{blog.detail_request}}
+{{blog.limited_time_hour}}
+{{blog.limited_time_min}}
+{{blog.limited_time_sec}}
+<br>
+{% endfor %}
+
+<a href="">나도 부탁하러 가기</a>
+
 {% endblock %}
