@@ -4,17 +4,24 @@
 
 <h5>This is main.html</h5>
 
-{% for blog in blogs %}
+필터: 
 
+{% for blog in blogs %}
+<div class = "content_box">
 {{blog.request_place}}
-{{blog.meet_place}}
-{{blog.detail_request}}
-{{blog.limited_time_hour}}
-{{blog.limited_time_min}}
-{{blog.limited_time_sec}}
+{{blog.meet_place_select}}
+{{blog.request_item}}
+{{blog.request_quantity}}개
 <br>
+<h4>남은 시간: 
+    {{blog.limited_time_hour}}시
+    {{blog.limited_time_min}}분
+    {{blog.limited_time_sec}}초 남음
+</h4>
+<h5>수수료: {{blog.fees}}</h5>
+<br>
+</div>
 {% endfor %}
 
 <a href="">나도 부탁하러 가기</a>
-
 {% endblock %}
