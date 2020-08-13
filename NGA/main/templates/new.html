@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h5>나도 요청하기</h5>
+
+<!--post로 받아와서 할 행동에 대한 정의-->
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--요청장소-->
+    <div>
+        <h3><label for="inputRequestPlace">요청장소 :</label></h3>
+        <input type="text" id="inputRequestPlace" name="requestplace" required>
+        <small>가게 이름이나 건물명 등을 적어주세요.</small>
+    </div>
+    <!--만날장소(셀렉박스)-->
+    <div>
+        <h3><label for="inputMeetPlaceSelect">만날장소 :</label></h3>
+        <!-- <input type="text" id="inputMeetPlaceSelect" name="meetplaceselect" required> -->
+        <select name="meetplaceselect">
+            <option vaule="흑석">흑석</option>
+            <option vaule="정문">정문</option>
+            <option vaule="중문">중문</option>
+            <option vaule="후문">후문</option>
+            <option vaule="상도">상도</option>
+        </select>
+    </div>
+    <!--만날장소 디테일-->
+    <div>
+        <h3><label for="inputMeetPlaceDetail">만날장소 디테일 :</label></h3>
+        <input type="text" id="inputMeetPlaceDetail" name="meetplacedetail" required>
+    </div>
+    <!--품목 수량(컨트롤박스)-->
+    <div>
+        <h3><label for="inputRequestQuantity">요청 품목 수량 :</label></h3>
+        <input type="text" id="inputRequestQuantity" name="requestquantity" required>
+    </div>
+    <!--품목 이름-->
+    <div>
+        <h3><label for="inputRequestItem">요청 품목 :</label></h3>
+        <input type="text" id="inputRequestItem" name="requestitem" required>
+    </div>
+    <!--품목 세부사항-->
+    <div>
+        <h3><label for="inputRequestDetail">요청 품목 세부사항 :</label></h3>
+        <input type="text" id="inputRequestDetail" name="requestdetail" required>
+    </div>
+    <!--품목 추가(버튼)-->
+    <div>
+        <input type="button" name="itemadd" value="품목 추가하기">
+    </div>
+    <!--수수료-->
+    <div>
+        <h3><label for="inputFees">수수료 :</label></h3>
+        <input type="text" id="inputFees" name="fees" required>
+    </div>
+    <!--제한 시간-->
+    <div>
+        <h3><label for="inputLimitedTime">제한시간 :</label></h3>
+        <input type="text" id="inputLimitedTime" name="limitedtimehour" required>시
+        <input type="text" id="inputLimitedTime" name="limitedtimemin" required>분
+        <input type="text" id="inputLimitedTime" name="limitedtimesec" required>초
+    </div>
+    <!--부탁하기(버튼)-->
+    <input type="button" name="requestadd" value="부탁하기">
+</form>
+
+
+
+
+
+
+{% endblock %}

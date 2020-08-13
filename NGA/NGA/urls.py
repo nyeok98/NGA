@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name="main"),
     path('mypage/', include('mypage.urls')),
-
+    path('new/', views.new, name="new"),
 ]
