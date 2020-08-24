@@ -1,12 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!--{% load static %}-->
+{% load static %}
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .form{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        padding:30px;
+        position:relative;
 
-<!-- <img src ="{% static 'image/어쩌구' %}" alt="회원가입 학교 사진"> -->
+    }
+    .image{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        padding:30px;
+        position:relative;
 
-<h2>회원가입</h2>
+    }
+</style>
+
+<div class="container">
+<div class="image">
+<img src ="{% static 'images/school1.jpg' %}" width="700" height="600">
+</div>
+<div class="form">
 <form method = "post">
+    <h2>회원가입</h2> <br>
+
     {% csrf_token %}
     {% for field in registration_form %}
         <p>
@@ -25,5 +51,6 @@
 
     <button type="submit">회원가입 완료</button>
 </form>
-
+</div>
+</div>
 {% endblock %}

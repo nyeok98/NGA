@@ -1,12 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %} 
-<!--{% load static %}-->
 
-<!-- <img src ="{% static 'image/어쩌구.jpg' %}" alt="로그인 학교 사진"> -->
+{% load static %}
 
-<h2>로그인</h2>
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .form{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        padding:30px;
+        position:relative;
+
+    }
+    .image{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        padding:30px;
+        position:relative;
+        grid-column-start:2;
+        grid-column-end:4;
+
+    }
+</style>
+
+<div class="container">
+
+<div class="form">
+    
 <form method = "post">
+    <h2>로그인</h2> <br>
     {% csrf_token %}
     {% for field in login_form %}
         <p>
@@ -33,9 +61,17 @@
         </div>
     {% endif %}
 
+    <button type="submit">로그인</button><br><br>
+    <a href="{% url 'register' %}">회원가입하기</a>
 
-    <button type="submit">로그인</button>
 </form>
-<a href="{% url 'register' %}">회원가입하기</a>
+</div>
+
+<div class="image">
+    <img src ="{% static 'images/school2.jpg' %}" width="700" height="600">
+</div>
+
+</div>
+
 
 {% endblock %}
