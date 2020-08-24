@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--{% load static %}-->
+
+<!-- <img src ="{% static 'image/어쩌구' %}" alt="회원가입 학교 사진"> -->
+
+<h2>회원가입</h2>
+<form method = "post">
+    {% csrf_token %}
+    {% for field in registration_form %}
+        <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color:grey">{{field.help_text}}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <small style="color:red">{{error}}</small>
+            {% endfor %}
+        </p>
+    {% endfor %}
+
+    <button type="submit">회원가입 완료</button>
+</form>
+
+{% endblock %}
