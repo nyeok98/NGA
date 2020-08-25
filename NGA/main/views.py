@@ -34,7 +34,7 @@ def create(request):
         blog.limited_time_hour = request.POST['limited_time_hour']
         blog.limited_time_min = request.POST['limited_time_min']
         blog.limited_time_sec = request.POST['limited_time_sec']
-        blog.created_at = request.POST['created_at']
+        blog.created_at = timezone.datetime.now()
 
         blog.save()  # 객체 저장하기
 
@@ -45,3 +45,26 @@ def create(request):
 def edit(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'edit.html', {'blog': blog})
+
+
+update-기존 글 객체 가져와서 수정하기
+
+
+def update(request, blog_id):
+    blog = get_object_or_404(Blog, pk=blog_id)
+
+    blog.request_place = request.GET['requestplace']
+    blog.meet_place_select = request.GET['meetplaceselect']
+    blog.meet_place_detail = request.GET['meetplacedetail']
+    blog.request_item = request.GET['requestitem']
+    blog.request_detail = request.GET['requestdetail']
+    blog.request_quantity = request.GET['requestquantity']
+    blog.fees = request.GET['fees']
+    blog.limited_time_hour = request.GET['limited_time_hour']
+    blog.limited_time_min = request.GET['limited_time_min']
+    blog.limited_time_sec = request.GET['limited_time_sec']
+    blog.created_at = timezone.datetime.now()
+
+    blog.save()
+
+    return redirect('detail/' + str(blog.id))
