@@ -15,6 +15,9 @@
 수수료 : {{blog.fees}}<br>
 제한시간 : {{blog.limited_time_hour}} {{blog.limited_time_min}} {{blog.limited_time_sec}}<br>
 게시글 작성시간 :{{blog.created_at}}
+<p>
+    <a href="{% url 'main' %}">MAIN</a>
+    <a href="{% url 'edit' blog.id %}">EDIT</a>
+</p>
 
-<a href="{% url 'main' %}">MAIN</a>
 {% endblock %}
