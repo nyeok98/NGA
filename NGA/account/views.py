@@ -5,9 +5,10 @@ from account.forms import RegistrationForm, AccountAuthenticationForm
 def registration_view(request):
     context = {}
     if request.POST:
-        form = RegistrationForm(request.POST)
+        form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            photo_profil = form.cleaned_data.get('photo_profil')
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email, password = raw_password)

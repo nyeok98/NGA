@@ -32,10 +32,7 @@ class MyAccountManager(BaseUserManager):
     
 
 
-
-
 class Account(AbstractBaseUser):
-    #image = models.ImageField(upload_to = 'images/', null=True)
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     phone = models.CharField(max_length=100, verbose_name='phone', null=True)
@@ -44,6 +41,7 @@ class Account(AbstractBaseUser):
     student_number = models.CharField(max_length=30, verbose_name="student_number", null=True)    
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
+    photo_profil = models.ImageField(upload_to='images/',blank=True, null=True, verbose_name="photo_profil")
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

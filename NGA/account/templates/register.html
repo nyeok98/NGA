@@ -30,7 +30,7 @@
 <img src ="{% static 'images/school1.jpg' %}" width="700" height="600">
 </div>
 <div class="form">
-<form method = "post">
+<form method = "POST" enctype="multipart/form-data">
     <h2>회원가입</h2> <br>
 
     {% csrf_token %}
