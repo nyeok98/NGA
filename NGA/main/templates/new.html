@@ -3,6 +3,12 @@
 <!-- 품목 추가하기 동적 기능 -->
 {% block head %}
 <div id="parah"></div>
+<style>
+    .search_in input {
+        width: 250px;
+        text-align: center;
+    }
+</style>
 <script>
     var arrInput = new Array(0);
     var arrInputValue = new Array(0);
@@ -39,13 +45,6 @@
         display();
     }
 </script>
-<style>
-    .search_in input {
-        width: 250px;
-        text-align: center;
-    }
-</style>
-
 {% endblock %}
 
 {% block content %}
@@ -102,11 +101,10 @@
                 </tr>
             </table>
         </form> -->
-
-
-        <input type="text" name="requestquantity" value="0">
-        <input type="button" value="증가" onClick="javascript:this.form.amount.value++;">
-        <input type="button" value="감소" onClick="javascript:this.form.amount.value--;">
+        <input type="text" name="requestquantity" value="1">
+        <!-- 수량 조절 java 계속 오류 나서 text 처리함 -->
+        <!-- <input type="button" value="증가" onClick="javascript:this.form.amount.value++;">
+        <input type="button" value="감소" onClick="javascript:this.form.amount.value--;"> -->
 
     </div>
 
@@ -121,16 +119,15 @@
         <input type="button" value="품목 추가하기" onclick="addInput();" />
         <input type="button" value="삭제" onclick="deleteInput();" />
     </div>
-    <!-- <div>
-        <input type="button" name="itemadd" value="품목 추가하기">
-    </div> -->
+
+
 
 
     <!--수수료-->
     <div>
         <h3><label for="inputFees">수수료 :</label></h3>
         <span class="search_in"><input type="text" id="inputFees" name="fees" placeholder="최소 수수료는 1000원으로 책정됩니다."
-                required>원</span>
+                required></span>
     </div>
     <!--제한 시간-->
     <div>
