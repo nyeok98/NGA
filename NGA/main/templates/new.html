@@ -103,11 +103,11 @@
             </table>
         </form> -->
 
-        <form>
-            <input type="text" name="requestquantity" value="0">
-            <input type="button" value="증가" onClick="javascript:this.form.amount.value++;">
-            <input type="button" value="감소" onClick="javascript:this.form.amount.value--;">
-        </form>
+
+        <input type="text" name="requestquantity" value="0">
+        <input type="button" value="증가" onClick="javascript:this.form.amount.value++;">
+        <input type="button" value="감소" onClick="javascript:this.form.amount.value--;">
+
     </div>
 
     <!--품목 세부사항-->
@@ -117,10 +117,10 @@
     </div>
 
     <!--품목 추가(버튼)-->
-    <form method="post" action="test.jsp">
+    <div method="post" action="test.jsp">
         <input type="button" value="품목 추가하기" onclick="addInput();" />
         <input type="button" value="삭제" onclick="deleteInput();" />
-    </form>
+    </div>
     <!-- <div>
         <input type="button" name="itemadd" value="품목 추가하기">
     </div> -->
@@ -130,13 +130,16 @@
     <div>
         <h3><label for="inputFees">수수료 :</label></h3>
         <span class="search_in"><input type="text" id="inputFees" name="fees" placeholder="최소 수수료는 1000원으로 책정됩니다."
-                required></span>
+                required>원</span>
     </div>
     <!--제한 시간-->
     <div>
         <h3><label for="inputLimitedTime">제한시간 :</label></h3>
         <!-- 시간 들어가는 부분 -->
-        <p><input type="time" value="00:00:00" min="00:00:00" max="23:59:59" name="limitiedtime"></p>
+        <p>
+            <h3>시:<input type="text" name="limitiedhour" value="0"> 분:<input type="text" name="limitiedmin" value="0">
+                초:<input type="text" name="limitiedsec" value="0"></h3>
+        </p>
         <!--<input type="text" id="inputLimitedTime" name="limitedtimehour" required>시
         <input type="text" id="inputLimitedTime" name="limitedtimemin" required>분
         <input type="text" id="inputLimitedTime" name="limitedtimesec" required>초 -->

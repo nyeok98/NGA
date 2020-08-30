@@ -31,23 +31,20 @@ def create(request):
         blog.request_detail = request.POST['requestdetail']
         blog.request_quantity = request.POST['requestquantity']
         blog.fees = request.POST['fees']
-        blog.limited_time_hour = request.POST['limited_time_hour']
-        blog.limited_time_min = request.POST['limited_time_min']
-        blog.limited_time_sec = request.POST['limited_time_sec']
+        blog.limited_time_hour = request.POST['limitiedhour']
+        blog.limited_time_min = request.POST['limitiedmin']
+        blog.limited_time_sec = request.POST['limitiedsec']
         blog.created_at = timezone.datetime.now()
 
         blog.save()  # 객체 저장하기
 
-    return redirect('detail/' + str(blog.id))
+        return redirect('detail', blog.id)
     # 새로운 글 url 주소로 이동
 
 
 def edit(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'edit.html', {'blog': blog})
-
-
-update-기존 글 객체 가져와서 수정하기
 
 
 def update(request, blog_id):
