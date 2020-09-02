@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
 
+
+{% csrf_token %}
+
+<h5>나도 요청하기</h5>
+<h5>이 곳은 edit.html입니다</h5>
+
+요청장소 : {{blog.request_place}}<br>
+만날장소 : {{blog.meet_place_select}}<br>
+만날장소 디테일 : {{blog.meet_place_detail}}<br>
+요청 품목 : {{blog.request_item}}<br>
+요청 품목 수량 : {{blog.request_quantity}}<br>
+요청 품목 세부사항 : {{blog.request_detail}}<br>
+수수료 : {{blog.fees}}<br>
+제한시간 : {{blog.limited_time_hour}} {{blog.limited_time_min}} {{blog.limited_time_sec}}<br>
+게시글 작성시간 :{{blog.created_at}}
+
+
 <!-- 품목 추가하기 동적 기능 -->
 {% block head %}
 <div id="parah"></div>
@@ -47,25 +64,25 @@
 </script>
 {% endblock %}
 
+
 {% block content %}
 
 <h5>나도 요청하기</h5>
-<h5>이 곳은 new.html입니다</h5>
+<h5>이 곳은 edit.html입니다</h5>
 
 <!--post로 받아와서 할 행동에 대한 정의-->
-<form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+<form action="{% url 'update' blog.id %}">
     {% csrf_token %}
     <!--요청장소-->
     <div>
         <h3><label for="inputRequestPlace">요청장소 :</label></h3>
-        <input type="text" id="inputRequestPlace" name="requestplace" required><br>
+        <input type="text" id="inputRequestPlace" name="requestplace" value="{{blog.request_place}}" required><br>
         <small>가게 이름이나 건물명 등을 적어주세요.</small>
     </div>
     <!--만날장소(셀렉박스)-->
     <div>
         <h3><label for="inputMeetPlaceSelect">만날장소 :</label></h3>
-        <!-- <input type="text" id="inputMeetPlaceSelect" name="meetplaceselect" required> -->
-        <select name="meetplaceselect">
+        <select name="meetplaceselect" value="{{blog.meet_place_select}}">
             <option vaule="흑석">흑석</option>
             <option vaule="정문">정문</option>
             <option vaule="중문">중문</option>
@@ -76,42 +93,23 @@
     <!--만날장소 디테일-->
     <div>
         <h3><label for="inputMeetPlaceDetail">만날장소 디테일 :</label></h3>
-        <input type="text" id="inputMeetPlaceDetail" name="meetplacedetail" required>
+        <input type="text" id="inputMeetPlaceDetail" name="meetplacedetail" value="{{blog.meet_place_detail}}" required>
     </div>
     <!--품목 이름-->
     <div>
         <h3><label for="inputRequestItem">요청 품목 :</label></h3>
-        <input type="text" id="inputRequestItem" name="requestitem" required>
+        <input type="text" id="inputRequestItem" name="requestitem" value="{{blog.request_item}}" required>
     </div>
     <!--품목 수량(컨트롤박스)-->
     <div>
-        <h3><label for="inputRequestQuantity">요청 품목 수량 :</label></h3>
-        <!-- <input type="text" id="inputRequestQuantity" name="requestquantity" required> -->
-
-        <!-- <form name="joinForm">
-            <table>
-                <tr>
-                    <td>
-                        <input type="text" id="inputRequestQuantity" name="count" />
-                    </td>
-                    <td>
-                        <button onClick="add();">위로</button>
-                        <button onClick="minus();">아래로</button>
-                    </td>
-                </tr>
-            </table>
-        </form> -->
+        <h3><label for="inputRequestQuantity" value="{{blog.request_quantity}}">요청 품목 수량 :</label></h3>
         <input type="text" name="requestquantity" value="1">
-        <!-- 수량 조절 java 계속 오류 나서 text 처리함 -->
-        <!-- <input type="button" value="증가" onClick="javascript:this.form.amount.value++;">
-        <input type="button" value="감소" onClick="javascript:this.form.amount.value--;"> -->
-
     </div>
 
     <!--품목 세부사항-->
     <div>
         <h3><label for="inputRequestDetail">요청 품목 세부사항 :</label></h3>
-        <input type="text" id="inputRequestDetail" name="requestdetail" required>
+        <input type="text" id="inputRequestDetail" name="requestdetail" value="{{blog.request_detail}}" required>
     </div>
 
     <!--품목 추가(버튼)-->
@@ -119,17 +117,19 @@
         <input type="button" value="품목 추가하기" onclick="addInput();" />
         <input type="button" value="삭제" onclick="deleteInput();" />
     </div>
-
-
+    <!-- <div>
+        <input type="button" name="itemadd" value="품목 추가하기">
+    </div> -->
 
 
     <!--수수료-->
     <div>
         <h3><label for="inputFees">수수료 :</label></h3>
-        <span class="search_in"><input type="text" id="inputFees" name="fees" placeholder="최소 수수료는 1000원으로 책정됩니다."
-                required></span>
+        <span class="search_in"><input type="text" id="inputFees" name="fees" value="{{blog.fees}}"
+                placeholder="최소 수수료는 1000원으로 책정됩니다." required></span>
     </div>
-    <!--제한 시간-->
+
+    <!-- 제한 시간 설정 -->
     <div>
         <h3><label for="inputLimitedTime">제한시간 :</label></h3>
         <!-- 시간 들어가는 부분 -->
@@ -143,28 +143,12 @@
         <!-- 여기서 시,분,초의 id 값을 다 다르게 해서 다른 id로 줘야하는 지 아니면 한 번에 묶어서 보내야 하는 지
         모르겠어요.. 아마 다 다른 id 값을 줘야겠죠?! -->
     </div>
+
     <!--부탁하기(버튼)-->
     <!-- form 태그와 submit 태그는 연결 -->
-
-    <input type="submit" value="부탁하기">
+    <input type="submit" value="수정하기">
 </form>
 
 
-<!-- <script type="text/javascript">
-    var a = 0;
-
-    function add() {
-        var number = document.getElementById("inputRequestQuantity")
-        number.value = a++;
-    }
-
-    function minus() {
-        var number = document.getElementById("inputRequestQuantity")
-        number.value = a--;
-    }
-</script> -->
-
-
-
-
+<a href="{% url 'main' %}">MAIN</a>
 {% endblock %}

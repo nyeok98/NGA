@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h5>나도 요청하기</h5>
+<h5>이 곳은 detail.html입니다</h5>
+
+요청장소 : {{blog.request_place}}<br>
+만날장소 : {{blog.meet_place_select}}<br>
+만날장소 디테일 : {{blog.meet_place_detail}}<br>
+요청 품목 : {{blog.request_item}}<br>
+요청 품목 수량 : {{blog.request_quantity}}<br>
+요청 품목 세부사항 : {{blog.request_detail}}<br>
+수수료 : {{blog.fees}}<br>
+제한시간 : {{blog.limited_time_hour}} {{blog.limited_time_min}} {{blog.limited_time_sec}}<br>
+게시글 작성시간 :{{blog.created_at}}
+<p>
+    <a href="{% url 'main' %}">MAIN</a>
+    <a href="{% url 'edit' blog.id %}">EDIT</a>
+    <a href="{% url 'delete' blog.id %}">DELETE</a>
+</p>
+
+{% endblock %}
