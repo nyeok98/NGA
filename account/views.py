@@ -16,6 +16,7 @@ def registration_view(request):
             return redirect('main')
         else:
             context['registration_form'] = form
+            
     else:
         form = RegistrationForm()
         context['registration_form'] = form
@@ -28,13 +29,12 @@ def logout_view(request):
 
 
 def login_view(request):
-
-    context = {}
     user = request.user
+
     if user.is_authenticated:
         return redirect("main")
     
-    if request. POST:
+    if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
             email = request.POST['email']
@@ -47,7 +47,8 @@ def login_view(request):
 
     else:
         form = AccountAuthenticationForm()
-
+    
+    context = dict()
     context['login_form'] = form
     return render(request, 'login.html', context)
 

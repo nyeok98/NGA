@@ -3,7 +3,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
-
 class Blog(models.Model):
     # 상점 이름
     request_place = models.CharField(max_length=20)

@@ -36,10 +36,12 @@
 <form method = "post">
     <h2>로그인</h2> <br>
     {% csrf_token %}
+    
     {% for field in login_form %}
         <p>
             {{field.label_tag}}
             {{field}}
+
 
             {% if field.help_text %}
                 <small style="color:grey">{{field.help_text}}</small>
@@ -68,7 +70,7 @@
 </div>
 
 <div class="image">
-    <img src ="{% static 'images/school2.jpg' %}" width="700" height="600">
+    <!-- <img src ="{% static 'images/school2.jpg' %}" width="700" height="600"> -->
 </div>
 
 </div>

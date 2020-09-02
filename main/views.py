@@ -8,16 +8,13 @@ def main(request):
     blogs = Blog.objects.all()
     return render(request, 'main.html', {'blogs': blogs})
 
-
 def new(request):
     blogs = Blog.objects.all()
     return render(request, 'new.html', {'blogs': blogs})
 
-
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'detail.html', {'blog': blog_detail})
-
 
 def create(request):
     if request.method == 'POST':
@@ -31,45 +28,17 @@ def create(request):
         blog.request_detail = request.POST['requestdetail']
         blog.request_quantity = request.POST['requestquantity']
         blog.fees = request.POST['fees']
-        blog.limited_time_hour = request.POST['limitiedhour']
-        blog.limited_time_min = request.POST['limitiedmin']
-        blog.limited_time_sec = request.POST['limitiedsec']
-        blog.created_at = timezone.datetime.now()
+        # blog.limited_time_hour = request.POST['limited_time_hour']
+        # blog.limited_time_min = request.POST['limited_time_min']
+        # blog.limited_time_sec = request.POST['limited_time_sec']
+        # blog.created_at = request.POST['created_at']
 
         blog.save()  # 객체 저장하기
 
-        return redirect('detail', blog.id)
+    # return redirect('detail/' + str(blog.id))
+    return redirect('main')
     # 새로운 글 url 주소로 이동
-
 
 def edit(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'edit.html', {'blog': blog})
-
-
-def update(request, blog_id):
-    blog = get_object_or_404(Blog, pk=blog_id)
-
-    blog.request_place = request.GET['requestplace']
-    blog.meet_place_select = request.GET['meetplaceselect']
-    blog.meet_place_detail = request.GET['meetplacedetail']
-    blog.request_item = request.GET['requestitem']
-    blog.request_detail = request.GET['requestdetail']
-    blog.request_quantity = request.GET['requestquantity']
-    blog.fees = request.GET['fees']
-    blog.limited_time_hour = request.GET['limitiedhour']
-    blog.limited_time_min = request.GET['limitiedmin']
-    blog.limited_time_sec = request.GET['limitedsec']
-    blog.created_at = timezone.datetime.now()
-
-    blog.save()
-
-    return redirect('detail', blog.id)
-
-# 기존 글 가져와서 삭제
-
-
-def delete(request, blog_id):
-    blog = get_object_or_404(Blog, pk=blog_id)
-    blog.delete()
-    return redirect('main')

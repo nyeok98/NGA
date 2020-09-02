@@ -1,26 +1,65 @@
+<!-- main.html -->
+
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %}
 
 {% block content %}
 
-<h5>This is main.html</h5>
 
-필터: 
+<div class="main">
+    <div class="main_header">
+        <h1>는김에</h1>
+    </div>
+    <div class="main_filter">
+        <div class="filter_button">
+            흑석
+        </div>
+        <div class="filter_button">
+            정문
+        </div>
+        <div class="filter_button">
+            중문
+        </div>
+        <div class="filter_button">
+            후문
+        </div>
+        <div class="filter_button">
+            상도
+        </div>
+    </div>
 
-{% for blog in blogs %}
-<div class = "content_box">
-{{blog.request_place}}
-{{blog.meet_place_select}}
-{{blog.request_item}}
-{{blog.request_quantity}}개
-<br>
-<h4>남은 시간: 
-    {{blog.limited_time_hour}}시
-    {{blog.limited_time_min}}분
-    {{blog.limited_time_sec}}초 남음
-</h4>
-<h5>수수료: {{blog.fees}}</h5>
-<br>
+    <div class="main_content">
+        {% for blog in blogs %}
+        <div class="content_box">
+            <div class="item">
+                {{blog.request_place}}
+                <br />
+                {{blog.meet_place_select}}
+                <br />
+                {{blog.request_item}}
+                <br />
+                {{blog.request_quantity}}개
+                <br />
+            </div>
+            <div class="time_left">
+                <h4>남은 시간:
+                    {{blog.limited_time_hour}}시
+                    {{blog.limited_time_min}}분
+                    {{blog.limited_time_sec}}초 남음
+                </h4>
+            </div>
+            <div class="fee">
+                <h5>수수료: {{blog.fees}}</h5>
+            </div>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
+
 <a href="{% url 'new' %}">나도 부탁하러 가기</a>
 {% endblock %}
